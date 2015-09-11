@@ -1,0 +1,16 @@
+{
+	"name": "leaflet-mapexpress",
+	"version": "0.0.0",
+	"description": "",
+	"author": "",
+	"devDependencies": {
+		
+	},
+	"repository": {
+		"type": "git",
+		"url": ""
+	},
+	"keywords": [
+		"gis"
+	]
+}
