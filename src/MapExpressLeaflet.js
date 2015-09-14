@@ -1,13 +1,15 @@
 L.MapExpressLeaflet = {
     Version: '0.0.1',
     
-    Services: {},
+    controls: {},
     
-    Mapping:{},
+    data:{},
     
-    Controls:{},
+    geo:{},
     
-    Utils:{}
+    utils:{},
+	
+	mapping:{}
 };
 
 if(typeof window !== 'undefined' && window.L){
