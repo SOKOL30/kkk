@@ -1,5 +1,5 @@
 L.MapExpress = {
-    Version: '0.0.1',
+    version: '0.0.1',
     
     controls: {},
     
@@ -7,7 +7,7 @@ L.MapExpress = {
     
     geo:{},
     
-	layers {},
+	layers: {},
 	
     utils:{},
 	
