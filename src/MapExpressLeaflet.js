@@ -1,17 +1,17 @@
 L.MapExpress = {
     version: '0.0.1',
     
-    controls: {},
+    Controls: {},
     
-    data:{},
+    Data:{},
     
-    geo:{},
+    Geo:{},
     
-	layers: {},
+	Layers: {},
 	
-    utils:{},
+    Utils:{},
 	
-	mapping:{}
+	Mapping:{}
 };
 
 if(typeof window !== 'undefined' && window.L){
