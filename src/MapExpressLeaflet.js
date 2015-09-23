@@ -1,4 +1,4 @@
-L.MapExpressLeaflet = {
+L.MapExpress = {
     Version: '0.0.1',
     
     controls: {},
@@ -7,11 +7,13 @@ L.MapExpressLeaflet = {
     
     geo:{},
     
+	layers {},
+	
     utils:{},
 	
 	mapping:{}
 };
 
 if(typeof window !== 'undefined' && window.L){
-  window.L.MapExpressLeaflet = L.MapExpressLeaflet;
+  window.L.MapExpress = L.MapExpress;
 }
