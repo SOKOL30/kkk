@@ -1,5 +1,5 @@
 
-L.MapExpress.Data.MapDataProvider = L.Class.extend({
+L.MapExpress.Data.MapSourceProvider = L.Class.extend({
 
 	options : {
 	},

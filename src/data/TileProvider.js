@@ -1,34 +1,23 @@
 
-L.MapExpress.Data.TileProvider = L.MapExpress.Data.MapDataProvider.extend({
+L.MapExpress.Data.TileProvider = L.MapExpress.Data.MapSourceProvider.extend({
 
 	options : {
 		maxZoom: 23,
-		subdomains: 'abc',
-		errorTileUrl: '',
-		zoomOffset: 0,
-		maxNativeZoom: null, // Number
-		tms: false,
-		zoomReverse: false,
-		detectRetina: false,
-		crossOrigin: false
+		subdomains: 'abc'
 	},
 	
 
 	initialize : function (url, options) {
 		options = L.setOptions(this, options);
-		
 		this._url = url;
-		
 		if (typeof options.subdomains === 'string') {
 			options.subdomains = options.subdomains.split('');
 		}
 	},
 
 	getTileImage : function (coords) {
-		var tile = document.createElement('img');
-		if (this.options.crossOrigin) {
-			tile.crossOrigin = '';
-		}
+		var tile = new Image();
+		tile.crossOrigin = '';
 		tile.alt = '';
 		tile.src = this.getTileUrl(coords);
 		return tile;
@@ -47,7 +36,6 @@ L.MapExpress.Data.TileProvider = L.MapExpress.Data.MapDataProvider.extend({
 	_getSubdomain: function (tilePoint) {
 		var index = Math.abs(tilePoint.x + tilePoint.y) % this.options.subdomains.length;
 		return this.options.subdomains[index];
-	}
-	
-	
+	},
+
 });
