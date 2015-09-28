@@ -3,7 +3,7 @@ L.MapExpress.Data.WmsProvider = L.MapExpress.Data.MapSourceProvider.extend({
 	defaultWmsParams: {
 		service: 'WMS',
 		request: 'GetMap',
-		version: '1.3.0',
+		version: '1.1.1',
 		layers: '',
 		styles: '',
 		format: 'image/png',
@@ -39,11 +39,7 @@ L.MapExpress.Data.WmsProvider = L.MapExpress.Data.MapSourceProvider.extend({
 	
 	getMapImage: function (mapBounds, mapSize) {
 		var img = new Image();
-		if (this.options.crossOrigin) {
-			img.crossOrigin = '';
-		}
 		img.src = this.getMapImageUrl(mapBounds, mapSize);
-		img.alt = this.options.alt;
 		return img;
 	},
 	
