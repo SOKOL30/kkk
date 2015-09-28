@@ -13,16 +13,10 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>
-
 <script src="../src/MapExpressLeaflet.js"></script>
-
 <script src="../src/data/MapSourceProvider.js"></script>
-<script src="../src/data/WmsProvider.js"></script>
 <script src="../src/data/TileProvider.js"></script>
-
 <script src="../src/layers/TileServiceLayer.js"></script>
-<script src="../src/layers/WmsTiledLayer.js"></script>
-<script src="../src/layers/WmsImageOverlayLayer.js"></script>
 
 
 <style type="text/css">
@@ -41,20 +35,10 @@ body {
 
 <script type="text/javascript">
 
-var map = L.map('map').setView([59.90, 30.26], 18);
+var map = L.map('map').setView([59.90, 30.26], 14);
 
-var tileProvider = new L.MapExpress.Data.TileProvider ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
-var layer1 = new L.MapExpress.Layers.TileServiceLayer (tileProvider);
-layer1.addTo(map);
-
-
-var provider = new L.MapExpress.Data.WmsProvider ("http://maps.rosreestr.ru/arcgis/services/Cadastre/CadastreWMS/MapServer/WmsServer",
-	{ layers:"7,6,5",
-	  format: "image/png",
-	  transparent:true	
-	}
-);
-var layer = new L.MapExpress.Layers.WmsImageOverlayLayer (provider);
+var tileProvider = new L.MapExpress.Data.TileProvider ("http://tile{s}.maps.2gis.com/tiles?x={x}&y={y}&z={z}&v=1",{subdomains:"123"});
+var layer = new L.MapExpress.Layers.TileServiceLayer (tileProvider,{maxZoom:23,attribution:"2ГИС"});
 layer.addTo(map);
 
 </script>

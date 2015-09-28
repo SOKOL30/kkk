@@ -67,7 +67,8 @@ L.MapExpress.Data.WmsProvider = L.MapExpress.Data.MapSourceProvider.extend({
         var pstr = L.Util.getParamString(this.wmsParams, this._url, uppercase);
         return this._url + pstr;
     },
-
+	
+	// TODO: См. MapExpress.CoreGIS.OGS.Tms.CoordSys методы PixelPointToProjectedPoint
 	_tileCoordsToBounds: function (tileCoord) {
 		var tileSize = this.options.tileSize;
 		var crs = L.CRS.EPSG3857;
