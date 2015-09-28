@@ -1,0 +1,45 @@
+{
+  "layers": [
+      {
+      "layerCodeName": "Mapnik",
+      "layerName": "BlackAndWhite",
+      "pathTo": "http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png",
+      "layerType": "layer",
+      "layerTypeFunction": "tileLayer"
+    },
+    {
+      "layerCodename": "osm",
+      "layerName": "Open Street Map",
+      "pathTo": "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+      "layerType": "primeBasemap",
+      "layerTypeFunction": "tileLayer"
+    },
+     {
+      "layerCodename": "oseam",
+      "layerName": "Open Sea Map",
+      "pathTo": "http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png",
+      "layerType": "overlay",
+      "layerTypeFunction": "tileLayer"
+    },
+    {
+      "layerCodeName": "olen",
+      "layerName": "Треки оленей",
+      "pathTo": "doc/paths/points.json",
+      "layerType": "primeOverlay",
+      "layerTypeFunction": "polyline",
+      "geometry": "polyline",
+      "color": "#000",
+      "width": 1
+    },
+    {
+      "layerCodeName": "olenSecondary",
+      "layerName": "Треки оленей 2",
+      "pathTo": "doc/paths/points.json",
+      "layerType": "overlay",
+      "layerTypeFunction": "polyline",
+      "geometry": "polyline",
+      "color": "#3300CC",
+      "width": 1
+    }
+  ]
+}
