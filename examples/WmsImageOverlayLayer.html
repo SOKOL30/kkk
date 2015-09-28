@@ -13,13 +13,16 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>
+
 <script src="../src/MapExpressLeaflet.js"></script>
+
 <script src="../src/data/MapSourceProvider.js"></script>
 <script src="../src/data/WmsProvider.js"></script>
 <script src="../src/data/TileProvider.js"></script>
 
 <script src="../src/layers/TileServiceLayer.js"></script>
 <script src="../src/layers/WmsTiledLayer.js"></script>
+<script src="../src/layers/WmsImageOverlayLayer.js"></script>
 
 
 <style type="text/css">
@@ -50,7 +53,7 @@ var provider = new L.MapExpress.Data.WmsProvider ("http://maps.rosreestr.ru/arcg
 	  transparent:true	
 	}
 );
-var layer = new L.MapExpress.Layers.WmsTiledLayer (provider);
+var layer = new L.MapExpress.Layers.WmsImageOverlayLayer (provider);
 layer.addTo(map);
 
 </script>

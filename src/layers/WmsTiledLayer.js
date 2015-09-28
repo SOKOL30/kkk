@@ -6,7 +6,7 @@ L.MapExpress.Layers.WmsTiledLayer = L.MapExpress.Layers.TileServiceLayer.extend 
 	},
 	
 	getTileImage: function (coords) {
-		return this.wmsProvider.getImageByTile(coords);
+		return this.wmsProvider.getMapImageByTile(coords);
 	}
 
 });

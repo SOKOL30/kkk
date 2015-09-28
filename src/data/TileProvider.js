@@ -6,7 +6,6 @@ L.MapExpress.Data.TileProvider = L.MapExpress.Data.MapSourceProvider.extend({
 		subdomains: 'abc'
 	},
 	
-
 	initialize : function (url, options) {
 		options = L.setOptions(this, options);
 		this._url = url;
@@ -16,11 +15,9 @@ L.MapExpress.Data.TileProvider = L.MapExpress.Data.MapSourceProvider.extend({
 	},
 
 	getTileImage : function (coords) {
-		var tile = new Image();
-		tile.crossOrigin = '';
-		tile.alt = '';
-		tile.src = this.getTileUrl(coords);
-		return tile;
+		var tileImage = new Image();
+		tileImage.src = this.getTileUrl(coords);
+		return tileImage;
 	},
 
 	getTileUrl : function (coords) {

@@ -6,14 +6,16 @@ L.MapExpress.Data.WmsProvider = L.MapExpress.Data.MapSourceProvider.extend({
 		version: '1.3.0',
 		layers: '',
 		styles: '',
-		format: 'image/jpeg',
+		format: 'image/png',
 		transparent: false
 	},
 	
 	options: {
 		tileSize : 256,
 		crs: L.CRS.EPSG3857,
-		uppercase: false
+		uppercase: false,
+		maxZoom: 23,
+		subdomains: 'abc'
 	},
     
 	initialize : function (url, options) {
@@ -29,23 +31,23 @@ L.MapExpress.Data.WmsProvider = L.MapExpress.Data.MapSourceProvider.extend({
 		this.wmsParams = wmsParams;
      },
 	
-	getImageByTile: function (tileCoord) {
+	getMapImageByTile: function (tileCoord) {
 		var tileBounds = this._tileCoordsToBounds(tileCoord);
 		var mapSize = new L.Point(this.options.tileSize, this.options.tileSize);		
-		return this.getImage(tileBounds,mapSize);
+		return this.getMapImage(tileBounds,mapSize);
 	},
 	
-	getImage: function (mapBounds, mapSize) {
+	getMapImage: function (mapBounds, mapSize) {
 		var img = new Image();
 		if (this.options.crossOrigin) {
 			img.crossOrigin = '';
 		}
-		img.src = this._getMapUrl(mapBounds, mapSize);
+		img.src = this.getMapImageUrl(mapBounds, mapSize);
 		img.alt = this.options.alt;
 		return img;
 	},
 	
-	_getMapUrl: function (mapBounds, mapSize) {
+	getMapImageUrl: function (mapBounds, mapSize) {
         var wmsVersion = parseFloat(this.wmsParams.version);
         var crs = this.options.crs;
         var projectionKey = wmsVersion >= 1.3 ? 'crs' : 'srs';
@@ -74,7 +76,7 @@ L.MapExpress.Data.WmsProvider = L.MapExpress.Data.MapSourceProvider.extend({
 		var tileSize = this.options.tileSize;
 		var crs = L.CRS.EPSG3857;
 		
-		var nwPoint = new L.Point(tileCoord.x * tileSize,tileCoord.y * tileSize);
+		var nwPoint = new L.Point(tileCoord.x * tileSize, tileCoord.y * tileSize);
 		var sePoint = new L.Point(nwPoint.x + tileSize, nwPoint.y + tileSize);
 		
 		var nwUnprojected = crs.pointToLatLng(nwPoint, tileCoord.z);
