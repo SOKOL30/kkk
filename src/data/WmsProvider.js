@@ -26,6 +26,7 @@ L.MapExpress.Data.WmsProvider = L.MapExpress.Data.MapSourceProvider.extend({
 				wmsParams[i] = options[i];
 			}
 		}
+		
 		options = L.setOptions(this, options);
 		wmsParams.width = wmsParams.height = options.tileSize * (options.detectRetina && L.Browser.retina ? 2 : 1);
 		this.wmsParams = wmsParams;

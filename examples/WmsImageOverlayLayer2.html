@@ -21,8 +21,8 @@
 <script src="../src/data/TileProvider.js"></script>
 <script src="../src/data/RasterProvider.js"></script>
 
-<script src="../src/layers/RasterLayer.js"></script>
 <script src="../src/layers/TileServiceLayer.js"></script>
+<script src="../src/layers/RasterLayer.js"></script>
 <script src="../src/layers/WmsTiledLayer.js"></script>
 <script src="../src/layers/WmsImageOverlayLayer.js"></script>
 
@@ -43,15 +43,15 @@ body {
 
 <script type="text/javascript">
 
-var map = L.map('map').setView([59.90, 30.26], 18);
+var map = L.map('map').setView([46.7, 143.9], 12);
 
 var tileProvider = new L.MapExpress.Data.TileProvider ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
 var layer1 = new L.MapExpress.Layers.TileServiceLayer (tileProvider);
 layer1.addTo(map);
 
 
-var provider = new L.MapExpress.Data.WmsProvider ("http://maps.rosreestr.ru/arcgis/services/Cadastre/CadastreWMS/MapServer/WmsServer",
-	{ layers:"7,6,5",
+var provider = new L.MapExpress.Data.WmsProvider ("http://wms.vsegei.ru/rasters/wms",
+	{ layers:"L6142",
 	  format: "image/png",
 	  transparent:true	
 	}
