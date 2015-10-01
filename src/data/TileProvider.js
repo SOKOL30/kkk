@@ -7,6 +7,7 @@ L.MapExpress.Data.TileProvider = L.MapExpress.Data.MapSourceProvider.extend({
 	},
 	
 	initialize : function (url, options) {
+		L.MapExpress.Data.MapSourceProvider.prototype.initialize.call(null,options);
 		options = L.setOptions(this, options);
 		this._url = url;
 		if (typeof options.subdomains === 'string') {

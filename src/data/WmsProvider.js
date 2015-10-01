@@ -19,6 +19,7 @@ L.MapExpress.Data.WmsProvider = L.MapExpress.Data.MapSourceProvider.extend({
 	},
     
 	initialize : function (url, options) {
+		L.MapExpress.Data.MapSourceProvider.prototype.initialize.call(null,options);
 		this._url = url;
 		var wmsParams = L.extend({}, this.defaultWmsParams);
 		for (var i in options) {
