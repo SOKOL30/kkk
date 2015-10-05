@@ -1,4 +1,5 @@
 (function() {
+	"use strict";
 	L.MapExpress.Layers.WmsTiledLayer = L.MapExpress.Layers.TileServiceLayer.extend ({
 
 		initialize: function (wmsProvider, options) {

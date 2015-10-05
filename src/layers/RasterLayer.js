@@ -1,4 +1,5 @@
 (function() {
+	"use strict";
 	L.MapExpress.Layers.RasterLayer = L.ImageOverlay.extend ({
 
 		initialize: function (rasterProvider, options) { 
@@ -60,7 +61,6 @@
 				this.addInteractiveTarget(this._image);
 			}
 			this.getPane().appendChild(this._image);
-			
 		}
 	});
 	

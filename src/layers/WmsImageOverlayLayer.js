@@ -1,4 +1,5 @@
 (function() {
+	"use strict";
 	L.MapExpress.Layers.WmsImageOverlayLayer = L.MapExpress.Layers.RasterLayer.extend ({
 
 		initialize: function (wmsProvider, options) { 

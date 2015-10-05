@@ -1,4 +1,3 @@
-
 (function() {
 	L.MapExpress.Data.RasterProvider = L.MapExpress.Data.MapSourceProvider.extend({
 
