@@ -8,7 +8,7 @@
             "_comment": "см. http://leafletjs.com/reference.html#map-options"
         },
 
-        "LayerGroups": {
+        "layerGroups": {
             "visible": "Признак видимости при инициализации карты",
             "visibleIndex": "Индекс (отображения) на карте",
             "minZoom": "Минимальный уровень",
