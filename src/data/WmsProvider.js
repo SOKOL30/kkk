@@ -1,4 +1,5 @@
 (function() {
+	"use strict";
 	L.MapExpress.Data.WmsProvider = L.MapExpress.Data.MapSourceProvider.extend({
 
 		defaultWmsParams: {
@@ -20,7 +21,7 @@
 		},
 		
 		initialize : function (url, options) {
-			L.MapExpress.Data.MapSourceProvider.prototype.initialize.call(null,options);
+			L.MapExpress.Data.MapSourceProvider.prototype.initialize.call(this,options);
 			this._url = url;
 			var wmsParams = L.extend({}, this.defaultWmsParams);
 			for (var i in options) {
@@ -28,7 +29,6 @@
 					wmsParams[i] = options[i];
 				}
 			}
-			
 			options = L.setOptions(this, options);
 			wmsParams.width = wmsParams.height = options.tileSize * (options.detectRetina && L.Browser.retina ? 2 : 1);
 			this.wmsParams = wmsParams;

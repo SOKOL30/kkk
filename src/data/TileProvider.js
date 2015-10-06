@@ -1,4 +1,5 @@
 (function() {
+	"use strict";
 	L.MapExpress.Data.TileProvider = L.MapExpress.Data.MapSourceProvider.extend({
 
 		options : {
@@ -7,11 +8,11 @@
 		},
 		
 		initialize : function (url, options) {
-			L.MapExpress.Data.MapSourceProvider.prototype.initialize.call(null,options);
-			options = L.setOptions(this, options);
+			L.MapExpress.Data.MapSourceProvider.prototype.initialize.call(this,options);
+			L.setOptions(this, options);
 			this._url = url;
-			if (typeof options.subdomains === 'string') {
-				options.subdomains = options.subdomains.split('');
+			if (typeof this.options.subdomains === 'string') {
+				this.options.subdomains = this.options.subdomains.split('');
 			}
 		},
 
@@ -34,7 +35,7 @@
 		_getSubdomain: function (tilePoint) {
 			var index = Math.abs(tilePoint.x + tilePoint.y) % this.options.subdomains.length;
 			return this.options.subdomains[index];
-		},
+		}
 
 	});
 	
