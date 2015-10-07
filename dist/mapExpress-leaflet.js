@@ -210,19 +210,18 @@ if(typeof window !== 'undefined' && window.L){
 }).call(this);
 (function() {
 	"use strict";
-	L.MapExpress.Layers.RasterSourceLayer = L.ImageOverlay.extend ({
+	L.MapExpress.Layers.RasterSourceLayer = L.ImageOverlay.extend({
 
-		initialize: function (rasterProvider, bounds, options) { 
+		initialize: function(rasterProvider, bounds, options) {
 			this._rasterProvider = rasterProvider;
-			var url = this._rasterProvider.getMapImageUrl (this._bounds, this._map.getSize());
-			L.ImageOverlay.prototype.initialize.call(this,url,bounds,options);
-
+			var url = this._rasterProvider.getMapImageUrl(this._bounds, this._map.getSize());
+			L.ImageOverlay.prototype.initialize.call(this, url, bounds, options);
 		}
 	});
-	
-	L.MapExpress.Layers.rasterSourceLayer = function (rasterProvider, bounds, options) {
+
+	L.MapExpress.Layers.rasterSourceLayer = function(rasterProvider, bounds, options) {
 		return new L.MapExpress.Layers.RasterSourceLayer(rasterProvider, bounds, options);
-	};	
+	};
 
 }).call(this);
 (function() {	"use strict";	L.MapExpress.Layers.TileServiceLayer = L.TileLayer.extend ({		initialize: function (tileProvider, options) {			L.TileLayer.prototype.initialize.call(this,null,options);					this.tileProvider = tileProvider;		},				createTile: function (coords, done) {			var tileImage = this.getTileImage(coords);			L.DomEvent.on(tileImage, 'load', L.bind(this._tileOnLoad, this, done, tileImage));			L.DomEvent.on(tileImage, 'error', L.bind(this._tileOnError, this, done, tileImage));			if (this.options.crossOrigin) {				tileImage.crossOrigin = '';			}			tileImage.alt = '';			return tileImage;		},				getTileImage: function (coords) {			return this.tileProvider.getTileImage(coords);		}	});		L.MapExpress.Layers.tileServiceLayer = function (tileProvider, options) {		return new L.MapExpress.Layers.TileServiceLayer(tileProvider, options);	};}).call(this);
@@ -287,24 +286,24 @@ if(typeof window !== 'undefined' && window.L){
 }).call(this);
 (function() {
 	"use strict";
-	L.MapExpress.Layers.WmsTiledLayer = L.MapExpress.Layers.TileServiceLayer.extend ({
+	L.MapExpress.Layers.WmsTiledLayer = L.MapExpress.Layers.TileServiceLayer.extend({
 
-		initialize: function (wmsProvider, options) {
-			L.MapExpress.Layers.TileServiceLayer.prototype.initialize.call(this,null,options);
+		initialize: function(wmsProvider, options) {
+			L.MapExpress.Layers.TileServiceLayer.prototype.initialize.call(this, null, options);
 			this.wmsProvider = wmsProvider;
 		},
-		
-		getTileImage: function (coords) {
+
+		getTileImage: function(coords) {
 			return this.wmsProvider.getMapImageByTile(coords);
 		}
 
 	});
-	
-	
-	L.MapExpress.Layers.wmsTiledLayer = function (wmsProvider, options) {
+
+
+	L.MapExpress.Layers.wmsTiledLayer = function(wmsProvider, options) {
 		return new L.MapExpress.Layers.WmsTiledLayer(wmsProvider, options);
-	};	
-	
+	};
+
 }).call(this);
 
 /*
