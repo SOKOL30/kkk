@@ -10,10 +10,9 @@
 <!--[if lte IE 8]>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.ie.css" />
 <![endif]-->
-
+<script>L_PREFER_CANVAS = true;</script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>
-
 <script src="../dist/mapExpress-leaflet.min.js"></script>
 
 
@@ -36,21 +35,18 @@ body {
 var map = L.map('map').setView([59.90, 30.26], 12);
 
 //У арки идет сначала y!
-//var tileProvider = new L.MapExpress.Data.TileProvider ("http://{s}.maps.rosreestr.ru/arcgis/rest/services/BaseMaps/BaseMap/MapServer/tile/{z}/{y}/{x}");
-//var layer1 = new L.MapExpress.Layers.TileServiceLayer (tileProvider);
-//layer1.addTo(map);
-
-var tileProvider = new L.MapExpress.Data.TileProvider ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
+var tileProvider = new L.MapExpress.Data.TileProvider ("http://{s}.maps.rosreestr.ru/arcgis/rest/services/BaseMaps/BaseMap/MapServer/tile/{z}/{y}/{x}");
 var layer1 = new L.MapExpress.Layers.TileServiceLayer (tileProvider);
 layer1.addTo(map);
 
-var provider = new L.MapExpress.Data.WmsProvider ("http://maps.rosreestr.ru/arcgis/services/Cadastre/CadastreWMS/MapServer/WmsServer",
+
+var provider = L.MapExpress.Data.wmsProvider ("http://maps.rosreestr.ru/arcgis/services/Cadastre/CadastreWMS/MapServer/WmsServer",
 	{ layers:"7,6,5",
 	  format: "image/png",
 	  transparent:true	
 	}
 );
-var layer = new L.MapExpress.Layers.WmsTiledLayer (provider);
+var layer = new L.MapExpress.Layers.WmsImageOverlayLayer (provider);
 layer.addTo(map);
 
 </script>

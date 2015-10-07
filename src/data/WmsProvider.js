@@ -34,9 +34,10 @@
 			this.wmsParams = wmsParams;
 		 },
 		
-		getMapImageByTile: function (tileCoord) {
+		getTileImage: function (tileCoord) {
 			var tileBounds = this._tileCoordsToBounds(tileCoord);
-			var mapSize = new L.Point(this.options.tileSize, this.options.tileSize);		
+			var tileSize = this.options.tileSize;
+			var mapSize = new L.Point(tileSize, this.options.tileSize);		
 			return this.getMapImage(tileBounds,mapSize);
 		},
 		
