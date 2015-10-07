@@ -3,13 +3,8 @@
 	L.MapExpress.Layers.WmsImageOverlayLayer = L.ImageOverlay.extend ({
 
 		initialize: function (wmsProvider, options) { 
-			L.ImageOverlay.prototype.initialize.call(this,null,null,options);
 			this._wmsProvider = wmsProvider;
-		},
-		
-		getMapImageUrl: function () {
-			this._bounds = this._map.getBounds();
-			return this._wmsProvider.getMapImageUrl (this._bounds, this._map.getSize());
+			L.ImageOverlay.prototype.initialize.call(this,null,null,options);
 		},
 		
 		getEvents: function () {
@@ -33,7 +28,7 @@
 		
 		_updateImage: function() {
 			this._bounds = this._map.getBounds();
-			this._url = this.getMapImageUrl ();
+			this._url = this._wmsProvider.getMapImageUrl (this._bounds, this._map.getSize());
 			
 			L.DomUtil.remove(this._image);
 			if (this.options.interactive) {
@@ -50,6 +45,8 @@
 			}
 			this.getPane().appendChild(this._image);
 		}
+		
+		
 	});
 	
 	L.MapExpress.Layers.wmsImageOverlayLayer = function (wmsProvider, options) {

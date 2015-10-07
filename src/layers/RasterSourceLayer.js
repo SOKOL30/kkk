@@ -4,7 +4,7 @@
 
 		initialize: function(rasterProvider, bounds, options) {
 			this._rasterProvider = rasterProvider;
-			var url = this._rasterProvider.getMapImageUrl(this._bounds, this._map.getSize());
+			var url = this._rasterProvider.getMapImageUrl(bounds, this._map.getSize());
 			L.ImageOverlay.prototype.initialize.call(this, url, bounds, options);
 		}
 	});

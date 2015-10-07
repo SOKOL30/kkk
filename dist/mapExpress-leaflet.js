@@ -215,7 +215,7 @@ if(typeof window !== 'undefined' && window.L){
 
 		initialize: function(rasterProvider, bounds, options) {
 			this._rasterProvider = rasterProvider;
-			var url = this._rasterProvider.getMapImageUrl(this._bounds, this._map.getSize());
+			var url = this._rasterProvider.getMapImageUrl(bounds, this._map.getSize());
 			L.ImageOverlay.prototype.initialize.call(this, url, bounds, options);
 		}
 	});
@@ -231,13 +231,8 @@ if(typeof window !== 'undefined' && window.L){
 	L.MapExpress.Layers.WmsImageOverlayLayer = L.ImageOverlay.extend ({
 
 		initialize: function (wmsProvider, options) { 
-			L.ImageOverlay.prototype.initialize.call(this,null,null,options);
 			this._wmsProvider = wmsProvider;
-		},
-		
-		getMapImageUrl: function () {
-			this._bounds = this._map.getBounds();
-			return this._wmsProvider.getMapImageUrl (this._bounds, this._map.getSize());
+			L.ImageOverlay.prototype.initialize.call(this,null,null,options);
 		},
 		
 		getEvents: function () {
@@ -261,7 +256,7 @@ if(typeof window !== 'undefined' && window.L){
 		
 		_updateImage: function() {
 			this._bounds = this._map.getBounds();
-			this._url = this.getMapImageUrl ();
+			this._url = this._wmsProvider.getMapImageUrl (this._bounds, this._map.getSize());
 			
 			L.DomUtil.remove(this._image);
 			if (this.options.interactive) {
@@ -278,6 +273,8 @@ if(typeof window !== 'undefined' && window.L){
 			}
 			this.getPane().appendChild(this._image);
 		}
+		
+		
 	});
 	
 	L.MapExpress.Layers.wmsImageOverlayLayer = function (wmsProvider, options) {
