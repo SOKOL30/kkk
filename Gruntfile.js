@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         concat: {
             main: {
                 src: [
-                    'src/**/*.js'  // Все JS-файлы в папке
+                    'src/**/*.js' 
                 ],
                 dest: 'dist/mapExpress-leaflet.js'
             }
