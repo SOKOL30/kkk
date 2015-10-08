@@ -35,8 +35,8 @@ body {
 var map = L.map('map').setView([59.90, 30.26], 18);
 
 
-var tileProvider = new L.MapExpress.Data.TileProvider ("http://{s}.tiles.maps.sputnik.ru/tiles/kmt2/{z}/{x}/{y}.png");
-var layer = new L.MapExpress.Layers.TileServiceLayer (tileProvider);
+var tileProvider = new MapExpress.Data.TileProvider ("http://{s}.tiles.maps.sputnik.ru/tiles/kmt2/{z}/{x}/{y}.png");
+var layer = new MapExpress.Layers.TileServiceLayer (tileProvider);
 layer.addTo(map);
 
 </script>

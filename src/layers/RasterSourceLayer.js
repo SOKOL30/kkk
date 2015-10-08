@@ -1,6 +1,6 @@
 (function() {
 	"use strict";
-	L.MapExpress.Layers.RasterSourceLayer = L.ImageOverlay.extend({
+	MapExpress.Layers.RasterSourceLayer = L.ImageOverlay.extend({
 
 		initialize: function(rasterProvider, bounds, options) {
 			this._rasterProvider = rasterProvider;
@@ -9,8 +9,8 @@
 		}
 	});
 
-	L.MapExpress.Layers.rasterSourceLayer = function(rasterProvider, bounds, options) {
-		return new L.MapExpress.Layers.RasterSourceLayer(rasterProvider, bounds, options);
+	MapExpress.Layers.rasterSourceLayer = function(rasterProvider, bounds, options) {
+		return new MapExpress.Layers.RasterSourceLayer(rasterProvider, bounds, options);
 	};
 
 }).call(this);

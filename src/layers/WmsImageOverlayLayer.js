@@ -1,6 +1,6 @@
 (function() {
 	"use strict";
-	L.MapExpress.Layers.WmsImageOverlayLayer = L.ImageOverlay.extend ({
+	MapExpress.Layers.WmsImageOverlayLayer = L.ImageOverlay.extend ({
 
 		initialize: function (wmsProvider, options) { 
 			this._wmsProvider = wmsProvider;
@@ -36,6 +36,7 @@
 			}
 			
 			this._initImage();
+			
 			if (this.options.opacity < 1) {
 				this._updateOpacity();
 			}
@@ -49,8 +50,8 @@
 		
 	});
 	
-	L.MapExpress.Layers.wmsImageOverlayLayer = function (wmsProvider, options) {
-		return new L.MapExpress.Layers.WmsImageOverlayLayer(wmsProvider, options);
+	MapExpress.Layers.wmsImageOverlayLayer = function (wmsProvider, options) {
+		return new MapExpress.Layers.WmsImageOverlayLayer(wmsProvider, options);
 	};
 	
 }).call(this);

@@ -36,16 +36,16 @@ body {
 var map = L.map('map').setView([59.90, 30.26], 12);
 
 //У арки идет сначала y!
-var tileProvider = new L.MapExpress.Data.TileProvider ("http://{s}.maps.rosreestr.ru/arcgis/rest/services/BaseMaps/BaseMap/MapServer/tile/{z}/{y}/{x}");
-var zxyLayer = new L.MapExpress.Layers.TileServiceLayer (tileProvider);
+var tileProvider = new MapExpress.Data.TileProvider ("http://{s}.maps.rosreestr.ru/arcgis/rest/services/BaseMaps/BaseMap/MapServer/tile/{z}/{y}/{x}");
+var zxyLayer = new MapExpress.Layers.TileServiceLayer (tileProvider);
 
-var wmsProvider = new L.MapExpress.Data.WmsProvider ("http://maps.rosreestr.ru/arcgis/services/Cadastre/CadastreWMS/MapServer/WmsServer",
+var wmsProvider = new MapExpress.Data.WmsProvider ("http://maps.rosreestr.ru/arcgis/services/Cadastre/CadastreWMS/MapServer/WmsServer",
 	{ layers:"7,6,5",
 	  format: "image/png",
 	  transparent:true	
 	}
 );
-var wmsTiledLayer = new L.MapExpress.Layers.TileServiceLayer (wmsProvider);
+var wmsTiledLayer = new MapExpress.Layers.TileServiceLayer (wmsProvider);
 
 zxyLayer.addTo(map);
 wmsTiledLayer.addTo(map);

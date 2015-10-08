@@ -46,3 +46,4 @@ build/Release
 
 node_modules
 bower_components
+/build.bat

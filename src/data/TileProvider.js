@@ -1,6 +1,6 @@
 (function() {
 	"use strict";
-	L.MapExpress.Data.TileProvider = L.MapExpress.Data.MapSourceProvider.extend({
+	MapExpress.Data.TileProvider = MapExpress.Data.MapSourceProvider.extend({
 
 		options : {
 			maxZoom: 23,
@@ -8,7 +8,7 @@
 		},
 		
 		initialize : function (url, options) {
-			L.MapExpress.Data.MapSourceProvider.prototype.initialize.call(this,options);
+			MapExpress.Data.MapSourceProvider.prototype.initialize.call(this,options);
 			L.setOptions(this, options);
 			this._url = url;
 			if (typeof this.options.subdomains === 'string') {
@@ -39,8 +39,8 @@
 
 	});
 	
-	L.MapExpress.Data.tileProvider = function (url, options) {
-		return new L.MapExpress.Data.TileProvider(url, options);
+	MapExpress.Data.tileProvider = function (url, options) {
+		return new MapExpress.Data.TileProvider(url, options);
 	};
 	
 }).call(this);

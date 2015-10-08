@@ -1,5 +1,4 @@
-L.MapExpress = {
-    version: '0.0.1',
+MapExpress = {
     
     Controls: {},
     
@@ -15,5 +14,5 @@ L.MapExpress = {
 };
 
 if(typeof window !== 'undefined' && window.L){
-  window.L.MapExpress = L.MapExpress;
+  window.MapExpress = MapExpress;
 }
