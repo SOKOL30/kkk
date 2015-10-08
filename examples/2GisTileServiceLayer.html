@@ -34,8 +34,8 @@ body {
 
 var map = L.map('map').setView([59.90, 30.26], 14);
 
-var tileProvider = new L.MapExpress.Data.TileProvider ("http://tile{s}.maps.2gis.com/tiles?x={x}&y={y}&z={z}&v=1",{subdomains:"123"});
-var layer = new L.MapExpress.Layers.TileServiceLayer (tileProvider,{maxZoom:23,attribution:"2ГИС"});
+var tileProvider = new MapExpress.Data.TileProvider ("http://tile{s}.maps.2gis.com/tiles?x={x}&y={y}&z={z}&v=1",{subdomains:"123"});
+var layer = new MapExpress.Layers.TileServiceLayer (tileProvider,{maxZoom:23,attribution:"2ГИС"});
 layer.addTo(map);
 
 </script>

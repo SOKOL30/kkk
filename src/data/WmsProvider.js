@@ -1,6 +1,6 @@
 (function() {
 	"use strict";
-	L.MapExpress.Data.WmsProvider = L.MapExpress.Data.MapSourceProvider.extend({
+	MapExpress.Data.WmsProvider = MapExpress.Data.MapSourceProvider.extend({
 
 		defaultWmsParams: {
 			service: 'WMS',
@@ -21,7 +21,7 @@
 		},
 		
 		initialize : function (url, options) {
-			L.MapExpress.Data.MapSourceProvider.prototype.initialize.call(this,options);
+			MapExpress.Data.MapSourceProvider.prototype.initialize.call(this,options);
 			this._url = url;
 			var wmsParams = L.extend({}, this.defaultWmsParams);
 			for (var i in options) {
@@ -90,8 +90,8 @@
 
 	});
 	
-	L.MapExpress.Data.wmsProvider = function (url, options) {
-		return new L.MapExpress.Data.WmsProvider(url, options);
+	MapExpress.Data.wmsProvider = function (url, options) {
+		return new MapExpress.Data.WmsProvider(url, options);
 	};
 	
 }).call(this);
