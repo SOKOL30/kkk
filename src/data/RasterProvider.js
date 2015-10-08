@@ -2,15 +2,20 @@
 	"use strict";
 	MapExpress.Data.RasterProvider = MapExpress.Data.MapSourceProvider.extend({
 
-		initialize : function (imageUrl,options) {
+		initialize : function (imageUrl,bounds,options) {
 			MapExpress.Data.MapSourceProvider.prototype.initialize.call(this,options);
 			L.setOptions(this, options);
 			this._imageUrl = imageUrl;
+			this._bounds = bounds;
 		},
 		
 		
 		getMapImageUrl: function (mapBounds, mapSize) {
 			return this._imageUrl;
+		},
+		
+		getImageBounds :function () {
+			return this._bounds;
 		}
 		
 	});

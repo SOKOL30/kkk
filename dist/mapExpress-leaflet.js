@@ -15,7 +15,7 @@ MapExpress = {
 
 if(typeof window !== 'undefined' && window.L){
   window.MapExpress = MapExpress;
-};;(function() {
+};;;(function() {
 	"use strict";
 	MapExpress.Data.MapSourceProvider = L.Class.extend({
 		
@@ -43,15 +43,20 @@ if(typeof window !== 'undefined' && window.L){
 	"use strict";
 	MapExpress.Data.RasterProvider = MapExpress.Data.MapSourceProvider.extend({
 
-		initialize : function (imageUrl,options) {
+		initialize : function (imageUrl,bounds,options) {
 			MapExpress.Data.MapSourceProvider.prototype.initialize.call(this,options);
 			L.setOptions(this, options);
 			this._imageUrl = imageUrl;
+			this._bounds = bounds;
 		},
 		
 		
 		getMapImageUrl: function (mapBounds, mapSize) {
 			return this._imageUrl;
+		},
+		
+		getImageBounds :function () {
+			return this._bounds;
 		}
 		
 	});
@@ -106,7 +111,7 @@ if(typeof window !== 'undefined' && window.L){
 	};
 	
 }).call(this);
-;(function() {
+;;(function() {
 	"use strict";
 	MapExpress.Data.WmsProvider = MapExpress.Data.MapSourceProvider.extend({
 
@@ -204,17 +209,18 @@ if(typeof window !== 'undefined' && window.L){
 	
 }).call(this);;(function() {
 	"use strict";
-	MapExpress.Layers.RasterSourceLayer = L.ImageOverlay.extend({
+	MapExpress.Layers.RasterServiceLayer = L.ImageOverlay.extend({
 
-		initialize: function(rasterProvider, bounds, options) {
+		initialize: function(rasterProvider, options) {
 			this._rasterProvider = rasterProvider;
-			var url = this._rasterProvider.getMapImageUrl(bounds, this._map.getSize());
+			var url = this._rasterProvider.getMapImageUrl();
+			var bounds = this._rasterProvider.getImageBounds();
 			L.ImageOverlay.prototype.initialize.call(this, url, bounds, options);
 		}
 	});
 
-	MapExpress.Layers.rasterSourceLayer = function(rasterProvider, bounds, options) {
-		return new MapExpress.Layers.RasterSourceLayer(rasterProvider, bounds, options);
+	MapExpress.Layers.rasterServiceLayer = function(rasterProvider, options) {
+		return new MapExpress.Layers.RasterServiceLayer(rasterProvider, options);
 	};
 
 }).call(this);;(function() {	"use strict";	MapExpress.Layers.TileServiceLayer = L.TileLayer.extend ({		initialize: function (tileProvider, options) {			L.TileLayer.prototype.initialize.call(this,null,options);					this.tileProvider = tileProvider;		},				createTile: function (coords, done) {			var tileImage = this.getTileImage(coords);			L.DomEvent.on(tileImage, 'load', L.bind(this._tileOnLoad, this, done, tileImage));			L.DomEvent.on(tileImage, 'error', L.bind(this._tileOnError, this, done, tileImage));			if (this.options.crossOrigin) {				tileImage.crossOrigin = '';			}			tileImage.alt = '';			return tileImage;		},				getTileImage: function (coords) {			return this.tileProvider.getTileImage(coords);		}	});		MapExpress.Layers.tileServiceLayer = function (tileProvider, options) {		return new MapExpress.Layers.TileServiceLayer(tileProvider, options);	};}).call(this);;(function() {
@@ -223,14 +229,15 @@ if(typeof window !== 'undefined' && window.L){
 
 		initialize: function (wmsProvider, options) { 
 			this._wmsProvider = wmsProvider;
-			L.ImageOverlay.prototype.initialize.call(this,null,null,options);
+			L.setOptions(this, options);
 		},
 		
 		getEvents: function () {
 			var events = {
 				zoom: this._reset,
 				viewreset: this._reset,
-				moveend: this._reset
+				moveend: this._reset,
+				load: this._onImageLoad
 			};
 
 			if (this._zoomAnimated) {
@@ -246,15 +253,16 @@ if(typeof window !== 'undefined' && window.L){
 		},
 		
 		_updateImage: function() {
-			this._bounds = this._map.getBounds();
-			this._url = this._wmsProvider.getMapImageUrl (this._bounds, this._map.getSize());
-			
 			L.DomUtil.remove(this._image);
 			if (this.options.interactive) {
 				this.removeInteractiveTarget(this._image);
 			}
 			
+			this._bounds = this._map.getBounds();
+			this._url = this._wmsProvider.getMapImageUrl (this._bounds, this._map.getSize());
+			
 			this._initImage();
+			L.DomEvent.on(this._image, 'load', L.bind(this._onImageLoad, this));
 			
 			if (this.options.opacity < 1) {
 				this._updateOpacity();
@@ -264,6 +272,10 @@ if(typeof window !== 'undefined' && window.L){
 				this.addInteractiveTarget(this._image);
 			}
 			this.getPane().appendChild(this._image);
+		},
+		
+		_onImageLoad: function() {
+			window.alert('loads');
 		}
 		
 		

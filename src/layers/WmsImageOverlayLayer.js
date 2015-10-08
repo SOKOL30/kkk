@@ -4,14 +4,15 @@
 
 		initialize: function (wmsProvider, options) { 
 			this._wmsProvider = wmsProvider;
-			L.ImageOverlay.prototype.initialize.call(this,null,null,options);
+			L.setOptions(this, options);
 		},
 		
 		getEvents: function () {
 			var events = {
 				zoom: this._reset,
 				viewreset: this._reset,
-				moveend: this._reset
+				moveend: this._reset,
+				load: this._onImageLoad
 			};
 
 			if (this._zoomAnimated) {
@@ -27,15 +28,16 @@
 		},
 		
 		_updateImage: function() {
-			this._bounds = this._map.getBounds();
-			this._url = this._wmsProvider.getMapImageUrl (this._bounds, this._map.getSize());
-			
 			L.DomUtil.remove(this._image);
 			if (this.options.interactive) {
 				this.removeInteractiveTarget(this._image);
 			}
 			
+			this._bounds = this._map.getBounds();
+			this._url = this._wmsProvider.getMapImageUrl (this._bounds, this._map.getSize());
+			
 			this._initImage();
+			//L.DomEvent.on(this._image, 'load', L.bind(this._onImageLoad, this));
 			
 			if (this.options.opacity < 1) {
 				this._updateOpacity();
@@ -45,6 +47,10 @@
 				this.addInteractiveTarget(this._image);
 			}
 			this.getPane().appendChild(this._image);
+		},
+		
+		_onImageLoad: function() {
+			
 		}
 		
 		
