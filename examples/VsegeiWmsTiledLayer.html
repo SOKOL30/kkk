@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
 <!--[if lte IE 8]>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.ie.css" />
 <![endif]-->
-<script>L_PREFER_CANVAS = true;</script>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>
 <script src="../dist/mapExpress-leaflet.min.js"></script>
@@ -32,21 +33,23 @@ body {
 
 <script type="text/javascript">
 
-var map = L.map('map').setView([59.90, 30.26], 12);
+var map = L.map('map').setView([46.7, 143.9], 10);
 
 var tileProvider = new L.MapExpress.Data.TileProvider ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
 var layer1 = new L.MapExpress.Layers.TileServiceLayer (tileProvider);
 layer1.addTo(map);
 
-
-var provider = L.MapExpress.Data.wmsProvider ("http://maps.rosreestr.ru/arcgis/services/Cadastre/CadastreWMS/MapServer/WmsServer",
-	{ layers:"7,6,5",
+var provider = new L.MapExpress.Data.WmsProvider ("http://wms.vsegei.ru/rasters/wms",
+	{ layers:"L6142",
 	  format: "image/png",
+	  version:"1.3.0",
+	  crs:L.CRS.EPSG4326,
 	  transparent:true	
 	}
 );
-var layer = new L.MapExpress.Layers.WmsImageOverlayLayer (provider);
+var layer = new L.MapExpress.Layers.TileServiceLayer (provider);
 layer.addTo(map);
+
 
 </script>
 </body></html>

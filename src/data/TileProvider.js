@@ -16,19 +16,19 @@
 			}
 		},
 
-		getTileImage : function (coords) {
+		getTileImage : function (tileCoord) {
 			var tileImage = new Image();
-			tileImage.src = this.getTileUrl(coords);
+			tileImage.src = this.getTileUrl(tileCoord);
 			return tileImage;
 		},
 
-		getTileUrl : function (coords) {
+		getTileUrl : function (tileCoord) {
 			return L.Util.template(this._url, L.extend({
-				r: this.options.detectRetina && L.Browser.retina && this.options.maxZoom > 0 ? '@2x' : '',
-				s: this._getSubdomain(coords),
-				x: coords.x,
-				y: coords.y,
-				z: coords.z
+				r: this.options.tileCoord && L.Browser.retina && this.options.maxZoom > 0 ? '@2x' : '',
+				s: this._getSubdomain(tileCoord),
+				x: tileCoord.x,
+				y: tileCoord.y,
+				z: tileCoord.z
 			}, this.options));
 		},
 		

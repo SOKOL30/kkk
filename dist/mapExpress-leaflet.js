@@ -83,19 +83,19 @@ if(typeof window !== 'undefined' && window.L){
 			}
 		},
 
-		getTileImage : function (coords) {
+		getTileImage : function (tileCoord) {
 			var tileImage = new Image();
-			tileImage.src = this.getTileUrl(coords);
+			tileImage.src = this.getTileUrl(tileCoord);
 			return tileImage;
 		},
 
-		getTileUrl : function (coords) {
+		getTileUrl : function (tileCoord) {
 			return L.Util.template(this._url, L.extend({
-				r: this.options.detectRetina && L.Browser.retina && this.options.maxZoom > 0 ? '@2x' : '',
-				s: this._getSubdomain(coords),
-				x: coords.x,
-				y: coords.y,
-				z: coords.z
+				r: this.options.tileCoord && L.Browser.retina && this.options.maxZoom > 0 ? '@2x' : '',
+				s: this._getSubdomain(tileCoord),
+				x: tileCoord.x,
+				y: tileCoord.y,
+				z: tileCoord.z
 			}, this.options));
 		},
 		
@@ -148,9 +148,10 @@ if(typeof window !== 'undefined' && window.L){
 			this.wmsParams = wmsParams;
 		 },
 		
-		getMapImageByTile: function (tileCoord) {
+		getTileImage: function (tileCoord) {
 			var tileBounds = this._tileCoordsToBounds(tileCoord);
-			var mapSize = new L.Point(this.options.tileSize, this.options.tileSize);		
+			var tileSize = this.options.tileSize;
+			var mapSize = new L.Point(tileSize, this.options.tileSize);		
 			return this.getMapImage(tileBounds,mapSize);
 		},
 		
@@ -283,27 +284,6 @@ if(typeof window !== 'undefined' && window.L){
 		return new L.MapExpress.Layers.WmsImageOverlayLayer(wmsProvider, options);
 	};
 	
-}).call(this);
-(function() {
-	"use strict";
-	L.MapExpress.Layers.WmsTiledLayer = L.MapExpress.Layers.TileServiceLayer.extend({
-
-		initialize: function(wmsProvider, options) {
-			L.MapExpress.Layers.TileServiceLayer.prototype.initialize.call(this, null, options);
-			this.wmsProvider = wmsProvider;
-		},
-
-		getTileImage: function(coords) {
-			return this.wmsProvider.getMapImageByTile(coords);
-		}
-
-	});
-
-
-	L.MapExpress.Layers.wmsTiledLayer = function(wmsProvider, options) {
-		return new L.MapExpress.Layers.WmsTiledLayer(wmsProvider, options);
-	};
-
 }).call(this);
 
 /*
